@@ -1,5 +1,6 @@
 #include "rbtree.h"
 
-int main(int argc, char *argv[]) {
-
+int main() {
+    test_init();
+    test_insert_single(1024);
 }

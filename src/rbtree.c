@@ -80,7 +80,8 @@ node_t *right_rotate(rbtree *t, node_t *base) {
 }
 
 void delete_rbtree(rbtree *t) {
-  // TODO: reclaim the tree nodes's memory
+  
+
   free(t);
 }
 
@@ -122,7 +123,7 @@ node_t *rbtree_insert(rbtree *t, key_t key) {
 node_t *insert_fixup(rbtree *t, node_t *n) {
   node_t *y;
 
-  while (n->parent->color == RBTREE_RED) {  // 부무 노드가 RED면
+  while (n->parent->color == RBTREE_RED) {  // 부모 노드가 RED면
     if ((n->parent) == (n->parent->parent->left)) {  // 부모 노드가 조부모 노드의 왼쪽에 있다면
       y = (n->parent->parent)->right;  // 삼촌 노드
       
@@ -167,8 +168,18 @@ node_t *insert_fixup(rbtree *t, node_t *n) {
 }
 
 node_t *rbtree_find(const rbtree *t, const key_t key) {
-  // TODO: implement find
-  return t->root;
+  node_t *find_node;
+  find_node = t->root;
+
+  while ((find_node != nil) && (key != find_node->key)) {
+    if (key < find_node->key) {
+      find_node = find_node->left;
+    }
+    else {
+      find_node = find_node->right;
+    }
+  }
+  return find_node;
 }
 
 node_t *rbtree_min(const rbtree *t) {
