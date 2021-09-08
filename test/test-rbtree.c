@@ -4,6 +4,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// void rbtree_inorder_walk(const node_t *x) {
+//     if (x != NULL) {
+//         rbtree_inorder_walk(x->left);
+//         int parent_key;
+//         char color;
+//         if (x->parent != NULL) {
+//             parent_key = x->parent->key;
+//         } else {
+//             parent_key = 0;
+//         }
+//         if (x->color == RBTREE_RED) {
+//             color = 'R';
+//         } else {
+//             color = 'B';
+//         }
+//         printf(" %d>[%d](%c) ", parent_key, x->key, color);
+//         rbtree_inorder_walk(x->right);
+//     }
+// }
+
 // new_rbtree should return rbtree struct with null root node
 void test_init(void) {
   rbtree *t = new_rbtree();
@@ -84,14 +104,20 @@ void test_minmax(key_t *arr, const size_t n) {
 
   insert_arr(t, arr, n);
   assert(t->root != NULL);
+  // rbtree_inorder_walk(t->root);
 
   qsort((void *)arr, n, sizeof(key_t), comp);
   node_t *p = rbtree_min(t);
   assert(p != NULL);
   assert(p->key == arr[0]);
 
+
   node_t *q = rbtree_max(t);
   assert(q != NULL);
+  // printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+  // rbtree_inorder_walk(t->root);
+  // printf("q->key : %d\n", q->key);
+  // printf("arr[n-1] : %d \n", arr[n-1]);
   assert(q->key == arr[n - 1]);
 
   rbtree_erase(t, p);
@@ -201,6 +227,8 @@ void test_color_constraint(const rbtree *t) {
   assert(p == NULL || p->color == RBTREE_BLACK);
 
   init_color_traverse();
+  // printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+  // rbtree_inorder_walk(t->root);
   assert(color_traverse(p, RBTREE_BLACK, 0));
 }
 
@@ -242,7 +270,7 @@ int main(void) {
   test_find_single(512, 1024);
   test_erase_root(128);
   test_minmax_suite();
-  // test_distinct_values();
-  // test_duplicate_values();
+  test_distinct_values();
+  test_duplicate_values();
   printf("Passed all tests!\n");
 }
