@@ -7,20 +7,12 @@ void *erase_fixup(rbtree *, node_t *);
 
 // nil 생성
 node_t make_nil = {
-    .color = RBTREE_BLACK,
-    .left = NULL,
-    .right = NULL,
-    .parent = NULL
+  .color = RBTREE_BLACK,
+  .left = NULL,
+  .right = NULL,
+  .parent = NULL
 };
 node_t *nil = &make_nil;
-
-node_t _NIL = {
-    .color = RBTREE_BLACK,
-    .left = NULL, // 변경되는 상황 없음
-    .right = NULL, // 변경되는 상황 없음
-    .parent = NULL, // 변경될 수 있음!
-};
-node_t *NIL = &_NIL;
 
 // 트리 생성
 rbtree *new_rbtree(void) {
