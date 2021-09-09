@@ -201,8 +201,6 @@ node_t *rbtree_max(const rbtree *t) {
 
   while (tmp->right != NULL) {
     tmp = tmp->right;
-    // printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    // printf("tmp->right : %p\n", &tmp->right->key);
   }
   return tmp;
 }
